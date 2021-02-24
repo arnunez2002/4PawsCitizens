@@ -9,17 +9,14 @@ import java.io.IOException;
 public class Controller {
 
 	Manager manager;
+	File fileCSV = new File("pets-citizens.csv");
 
 	public Controller() {
 		manager = new Manager();
-		try {
-			
-			manager.uploadData();
-			manager.assignID();
-			System.out.println(manager.mostrar(manager.getPetArray()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//manager.uploadData();
+
+		manager.setPetArray(manager.leerArchivo(fileCSV));
+		manager.assignID();
+		System.out.println(manager.mostrar(manager.getPetArray()));
 	}
 }
