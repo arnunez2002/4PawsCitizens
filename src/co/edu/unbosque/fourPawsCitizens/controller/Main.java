@@ -7,8 +7,8 @@ public class Main {
 Controller controller = new Controller();
 
 System.out.print("hoklla");
-System.out.print("odijfalsk")
-;
+System.out.print("odijfalsk");
+
 
 	}
 
