@@ -6,7 +6,7 @@ public class Main {
 		// TODO Auto-generated method stub
 Controller controller = new Controller();
 
-
+System.out.print("hola");
 
 
 	}

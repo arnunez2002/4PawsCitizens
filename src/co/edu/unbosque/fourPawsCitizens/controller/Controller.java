@@ -1,9 +1,10 @@
 package co.edu.unbosque.fourPawsCitizens.controller;
+import co.edu.unbosque.fourPawsCitizens.model.Manager;
+
 
 import java.io.File;
 import java.io.IOException;
 
-import co.edu.unbosque.fourPawsCitizens.model.Manager;
 
 public class Controller {
 
