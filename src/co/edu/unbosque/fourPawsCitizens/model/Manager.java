@@ -13,93 +13,6 @@ public class Manager {
 	}
 
 	// Punto 2
-/*
-	public ArrayList<Pet> uploadData() throws NumberFormatException, IOException {
-
-		ArrayList<String> objetos = new ArrayList<String>();
-		File excelFile = new File("pets-citizens.csv");
-		FileInputStream fis = new FileInputStream(excelFile);
-		XSSFWorkbook workBook = new XSSFWorkbook(fis);
-		// sheet
-		XSSFSheet sheet = workBook.getSheetAt(0);
-		// row
-		Iterator<Row> rowIt = sheet.iterator();
-		Iterator<Cell> celdas;
-		Row row;
-		Cell celda;
-		while (rowIt.hasNext()) {
-			row = rowIt.next();
-			celdas = row.iterator();
-			while (celdas.hasNext()) {
-				celda = celdas.next();
-				objetos.add(celda.toString());
-			}
-		}
-		fis.close();
-		for (int i = 0; i < objetos.size(); i++) {
-			Pet pet = new Pet();
-			ArrayList<String> atributos = new ArrayList<String>();
-			String linea = objetos.get(i);
-			Scanner delimitar = new Scanner(linea);
-			delimitar.useDelimiter("\\s*;\\s*");
-			while (delimitar.hasNext()) {
-				atributos.add(delimitar.next());
-			}
-			pet.setId("NO-ID");
-			try {
-				pet.setMicrochip(Long.parseLong(atributos.get(0)));
-				pet.setSpecies(atributos.get(1));
-				pet.setSex(atributos.get(2));
-				pet.setSize(atributos.get(3));
-				if (atributos.get(4).equals("NO")) {
-					pet.setPotentiallyDangerous(false);
-				} else {
-					pet.setPotentiallyDangerous(true);
-				}
-				pet.setNeighborhood(atributos.get(5));
-				petArray.add(pet);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
-		return petArray;
-	}
-*/
-
-	public String escribirArchivo(File fArchivo, ArrayList<Pet> petArrayArrayList) {
-		try {
-			// Si el archivo NO existe se crea.
-
-			if (fArchivo.exists()) {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(fArchivo));
-				bw.write("");
-				bw.close();
-
-			} else {
-				fArchivo.createNewFile();
-			}
-			// el atributo <true> significa que si existe el archivo, se a?aden
-			// m?s registros sin borrar el archivo
-			BufferedWriter fEscribir = new BufferedWriter(
-					new OutputStreamWriter(new FileOutputStream(fArchivo, true), "utf-8"));
-
-			for (Pet pet : petArrayArrayList) {
-				// escribe los datos en el archivo
-				fEscribir.write(pet.getId()+ ";" + pet.getMicrochip() + ";" + pet.getSpecies() + ";"
-						+ pet.getSex() +";"+pet.getSize()+";"+pet.getPotentiallyDangerous()+";"+pet.getNeighborhood()+ "\n");
-				System.out.println(petArrayArrayList.size());
-			}
-
-			// Cierra el flujo de escritura
-			fEscribir.close();
-			return "Resultado exitoso";
-		} catch (IOException ex) {
-			// Captura un posible error
-			System.out.println(ex.getMessage());
-			return "Se ha presentado un error";
-
-		}
-	}
 
 	public ArrayList<Pet> leerArchivo(File fArchivo) {
 		try {
@@ -138,6 +51,7 @@ public class Manager {
 					e.setNeighborhood(delimitar.next());
 
 					listaPet.add(e);
+
 				}catch(Exception n) {
 				System.out.print("Malo");
 				}
@@ -198,8 +112,6 @@ public class Manager {
 					+ pet.getPotentiallyDangerous() + ";" + pet.getNeighborhood() + "\n";
 		return contenido;
 	}
-	
-	
 
 	public String mostrar(ArrayList<Pet> pets) {
 		String contenido = "cantidad = " + pets.size() + "\n";
@@ -210,6 +122,37 @@ public class Manager {
 		}
 		return contenido;
 	}
+	public String buscarMicrohip(ArrayList<Pet> pets, long num) {
+		String contenido = "";
+		for (int i = 0; i < pets.size(); i++) {
+			if (num == pets.get(i).getMicrochip()) {
+				System.out.print(pets.get(i).getMicrochip());
+				contenido = pets.get(i).getId() + ";" + pets.get(i).getMicrochip() + ";"
+						+ pets.get(i).getSpecies() + ";" + pets.get(i).getSex() + ";" + pets.get(i).getSize() + ";"
+						+ pets.get(i).getPotentiallyDangerous() + ";" + pets.get(i).getNeighborhood() + "\n";
+			}
+		}
+		return contenido;
+	}
+	public String buscarEspecie(ArrayList<Pet> pets, String especie){
+		int aux = 0;
+		String contenido = "";
+		for (int i = 0; i < pets.size(); i++) {
+			if(especie.equals(pets.get(i).getSpecies())){
+			for(int j = 0; j < pets.size(); j++){
+				if(pets.get(i).getSpecies().equals(pets.get(j).getSpecies())){
+                     int numero=0;
+                     numero= numero + aux+1;
+                     contenido = pets.get(i).getSpecies() +" "+numero;
+
+				}
+
+			}
+
+			}
+		}
+		return contenido;
+}
 
 	public ArrayList<Pet> getPetArray() {
 		return petArray;
@@ -219,3 +162,4 @@ public class Manager {
 		this.petArray = petArray;
 	}
 }
+
