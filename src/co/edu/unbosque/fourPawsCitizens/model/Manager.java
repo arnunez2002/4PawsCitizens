@@ -123,15 +123,16 @@ public class Manager {
 		return contenido;
 	}
 	public String buscarMicrohip(ArrayList<Pet> pets, long num) {
-		String contenido = "";
+		String contenido = "000000";
 		for (int i = 0; i < pets.size(); i++) {
 			if (num == pets.get(i).getMicrochip()) {
 				System.out.print(pets.get(i).getMicrochip());
-				contenido = pets.get(i).getId() + ";" + pets.get(i).getMicrochip() + ";"
+				contenido = contenido+pets.get(i).getId() + ";" + pets.get(i).getMicrochip() + ";"
 						+ pets.get(i).getSpecies() + ";" + pets.get(i).getSex() + ";" + pets.get(i).getSize() + ";"
 						+ pets.get(i).getPotentiallyDangerous() + ";" + pets.get(i).getNeighborhood() + "\n";
 			}
 		}
+		
 		return contenido;
 	}
 	public String buscarEspecie(ArrayList<Pet> pets, String especie){
@@ -139,18 +140,10 @@ public class Manager {
 		String contenido = "";
 		for (int i = 0; i < pets.size(); i++) {
 			if(especie.equals(pets.get(i).getSpecies())){
-			for(int j = 0; j < pets.size(); j++){
-				if(pets.get(i).getSpecies().equals(pets.get(j).getSpecies())){
-                     int numero=0;
-                     numero= numero + aux+1;
-                     contenido = pets.get(i).getSpecies() +" "+numero;
-
-				}
-
-			}
-
+				aux++;
 			}
 		}
+		contenido = contenido + aux;
 		return contenido;
 }
 
