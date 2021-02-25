@@ -42,7 +42,7 @@ public class Controller {
                                 manager.setPetArray(manager.leerArchivo(fileCSV));
                                 System.out.print("-------------- OPCIONES A REALIZAE ---------------  " + "\n");
                                 System.out.print("Salir (0)" + "\n" + "mostrar Archivo (1)" + "\n" + "Buscar por microchip (2)" + "\n" + "Mostrar archivo arreglado (3)"
-                                        + "\n" + "Buscar cantidad por especie (4)" + "\n" + "\n");
+                                        + "\n" + "Buscar cantidad por especie (4)"+"Buscar por peligro (5)"+"\n"+"Buscar por microschip (6)" + "\n" + "\n");
                                 num2 = in.nextInt();
 
                                 if (num2 < 0) {
@@ -63,11 +63,17 @@ public class Controller {
                                     System.out.println(manager.mostrar(manager.getPetArray()));
                                 }
                                 if (num2 == 4) {
-                                    System.out.print("Escriba la especie");
+                                    System.out.print("Escriba la especie"+"\n");
                                     in.nextLine();
                                     String especie = in.nextLine();
                                     especie = especie.toUpperCase();
                                     System.out.println(manager.buscarEspecie(manager.getPetArray(), especie));
+                                }
+                                if(num2 == 5){
+
+                                }
+                                if(num2 == 6){
+
                                 }
                                 if (num2 == 0) {
                                     exit = true;
