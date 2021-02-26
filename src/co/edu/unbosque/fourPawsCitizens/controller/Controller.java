@@ -101,7 +101,9 @@ public class Controller {
 							} catch (InputMismatchException en) {
 								System.out.print("Error de numero" + "\n");
 								break;
-							}
+							}catch (IndexOutOfBoundsException en ){
+							    System.out.print("Error" + "\n");
+                            }
 						}
 					}
 					if (num == 0) {
