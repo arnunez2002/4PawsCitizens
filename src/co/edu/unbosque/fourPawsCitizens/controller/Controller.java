@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Controller {
@@ -43,7 +44,7 @@ public class Controller {
                                 System.out.print("-------------- OPCIONES A REALIZAE ---------------  " + "\n");
                                 System.out.print("Salir (0)" + "\n" + "mostrar Archivo (1)" + "\n"
                                         + "Buscar por microchip (2)" + "\n" + "Mostrar archivo arreglado (3)" + "\n"
-                                        + "Buscar cantidad por especie (4)"
+                                        + "Buscar cantidad por especie (4)" + "\n"
                                         + "Buscar los potencialmente peligrosos de una localidad (5)" + "\n"
                                         + "Buscar por microschip (6)" + "\n" + "\n");
                                 num2 = in.nextInt();
@@ -70,7 +71,7 @@ public class Controller {
                                     in.nextLine();
                                     String especie = in.nextLine();
                                     especie = especie.toUpperCase();
-                                    System.out.println(manager.countBySpecies(manager.getPetArray(), especie));
+                                    System.out.println(manager.countBySpecies(especie));
                                 }
                                 if (num2 == 5) {
                                     System.out.println("Introduce los datos de la siguiente manera" + "\n");
@@ -101,20 +102,23 @@ public class Controller {
                                     in.nextLine();
                                     System.out.print("Sex");
                                     sex = in.nextLine();
+                                    sex = sex.toUpperCase();
 
                                     System.out.print("species");
                                     species = in.nextLine();
+                                    species.toUpperCase();
 
                                     System.out.print("size");
                                     size = in.nextLine();
+                                    size.toUpperCase();
 
                                     System.out.print("potentDangerous");
+                                    in.nextLine();
                                     potentDangerous = in.nextLine();
+                                    potentDangerous = potentDangerous.toUpperCase();
 
 
-                                    System.out.print(manager.findByMultipleField(manager.getPetArray() , sex, species, size, potentDangerous));
-
-
+                                    System.out.print(manager.findByMultipleField(sex, species, size, potentDangerous));
                                 }
                                 if (num2 == 0) {
                                     exit = true;
