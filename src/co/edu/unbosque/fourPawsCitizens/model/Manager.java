@@ -125,13 +125,13 @@ public class Manager {
         return contenido;
     }
 
-    public String findByMicrochip( long num) {
+    public String findByMicrochip(long num) {
         String contenido = "";
         for (int i = 0; i < petArray.size(); i++) {
             if (num == petArray.get(i).getMicrochip()) {
-                contenido = "ID: "+ petArray.get(i).getId() + "\n" + "Species: "+petArray.get(i).getMicrochip() + "\n"
-                        +   "Gender: "+petArray.get(i).getSpecies() + "\n" + petArray.get(i).getSex() + "\n" +        "Size: "+ petArray.get(i).getSize() + "\n"
-                        +     "Potentially Dangerous: "+ petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: "+petArray.get(i).getNeighborhood() + "\n";
+                contenido = "ID: " + petArray.get(i).getId() + "\n" + "Species: " + petArray.get(i).getMicrochip() + "\n"
+                        + "Gender: " + petArray.get(i).getSpecies() + "\n" + petArray.get(i).getSex() + "\n" + "Size: " + petArray.get(i).getSize() + "\n"
+                        + "Potentially Dangerous: " + petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: " + petArray.get(i).getNeighborhood() + "\n";
             }
         }
 
@@ -150,42 +150,55 @@ public class Manager {
         return contenido;
     }
 
-    public String findBypotentDangerousInNeighborhood(int n, String  range, String neighborhood) {
-    	ArrayList<Pet> pets = new ArrayList<Pet>();
-			if(range.equals("TOP")) {
-				for (int i = 0; i < petArray.size(); i++) {
-					if(petArray.get(i).getPotentiallyDangerous()==true && petArray.get(i).getNeighborhood().equals(neighborhood)) {
-						pets.add(petArray.get(i));
-					}
-			}
-		}else if(range.equals("LAST")) {
-			for (int i = petArray.size(); i > 0; i--) {
-				if(petArray.get(i).getPotentiallyDangerous()==true && petArray.get(i).getNeighborhood().equals(neighborhood)) {
-					pets.add(petArray.get(i));
-				}
-		}
-		}
-			String contenido = "";
-    	for (int i = 0; i < n; i++) {
-    		  contenido = contenido + "ID: "+ petArray.get(i).getId() + "\n" + "Species: "+petArray.get(i).getMicrochip() + "\n"
-                      +   "Gender: "+petArray.get(i).getSpecies() + "\n" + petArray.get(i).getSex() + "\n" +        "Size: "+ petArray.get(i).getSize() + "\n"
-                      +     "Potentially Dangerous: "+ petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: "+petArray.get(i).getNeighborhood() + "\n" + "\n";
-		}
-    	
-      return contenido;
+    public String findBypotentDangerousInNeighborhood(int n, String range, String neighborhood) {
+        ArrayList<Pet> pets = new ArrayList<Pet>();
+        if (range.equals("TOP")) {
+            for (int i = 0; i < petArray.size(); i++) {
+                if (petArray.get(i).getPotentiallyDangerous() == true && petArray.get(i).getNeighborhood().equals(neighborhood)) {
+                    pets.add(petArray.get(i));
+                }
+            }
+        } else if (range.equals("LAST")) {
+            for (int i = petArray.size(); i > 0; i--) {
+                if (petArray.get(i).getPotentiallyDangerous() == true && petArray.get(i).getNeighborhood().equals(neighborhood)) {
+                    pets.add(petArray.get(i));
+                }
+            }
+        }
+        String contenido = "";
+        for (int i = 0; i < n; i++) {
+            contenido = contenido + "ID: " + petArray.get(i).getId() + "\n" + "Species: " + petArray.get(i).getMicrochip() + "\n"
+                    + "Gender: " + petArray.get(i).getSpecies() + "\n" + petArray.get(i).getSex() + "\n" + "Size: " + petArray.get(i).getSize() + "\n"
+                    + "Potentially Dangerous: " + petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: " + petArray.get(i).getNeighborhood() + "\n" + "\n";
+        }
+
+        return contenido;
     }
 
     public String findByMultipleField(ArrayList<Pet> pets, String sex, String species, String size, String potentDangerous) {
         String contador = "";
-        String species2 = species.charAt(0) + "";
-        String sex2 = sex.charAt(0) + "";
-        String size2 = size.charAt(0) + "";
 
-        String total = species2 + sex2 + size2 + potentDangerous;
+        String sex2 = sex.charAt(0)+"";
+        String species2 = species.charAt(0)+"";
+        String size2 = size.charAt(0)+"";
+        String potentDangerous2 = potentDangerous.charAt(0)+"";
+        String total= (sex2+species2+size2+potentDangerous2);
 
         for (int i = 0; i < pets.size(); i++) {
-            if (total.equals(pets.get(i).getMicrochip())) {
-                contador = contador + pets.get(i).getId();
+
+            String species1 = pets.get(i).getSpecies().charAt(0) + "";
+            String sex1 = pets.get(i).getSex().charAt(0) + "";
+            String size1 = pets.get(i).getSize().charAt(0) + "";
+            String potencialDanger = "";
+            if (pets.get(i).getPotentiallyDangerous().equals("SI")) {
+                potencialDanger = "S";
+            } else {
+                potencialDanger = "N";
+            }
+            String iD = sex1 + species1 + size1 + potencialDanger;
+            if (total.equals(iD)) {
+                contador = contador + pets.get(i).getId()+"\n";
+
             }
         }
         return contador;
