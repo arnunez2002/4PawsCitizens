@@ -1,5 +1,6 @@
 package co.edu.unbosque.fourPawsCitizens.controller;
 
+import co.edu.unbosque.fourPawsCitizens.model.EmptyAttributeException;
 import co.edu.unbosque.fourPawsCitizens.model.Manager;
 
 import java.io.File;
@@ -16,7 +17,7 @@ public class Controller {
     Manager manager;
     File fileCSV = new File("pets-citizens.csv");
 
-    public Controller() {
+    public Controller() throws EmptyAttributeException {
         String deco = "---------------------------------------------------------------";
         manager = new Manager();
         // manager.uploadData();
@@ -40,10 +41,10 @@ public class Controller {
                         while (exit == false) {
                             try {
                                 int num2 = 0;
-                                manager.setPetArray(manager.leerArchivo(fileCSV));
+                                manager.setPetArray(manager.uploadData());
                                 System.out.print("-------------- OPCIONES A REALIZAE ---------------  " + "\n");
                                 System.out.print("Salir (0)" + "\n" + "mostrar Archivo (1)" + "\n"
-                                        + "Buscar por microchip (2)" + "\n" + "Mostrar archivo arreglado (3)" + "\n"
+                                        + "Buscar por microchip (2)" + "\n" + "Asignar IDs de animales (3)" + "\n"
                                         + "Buscar cantidad por especie (4)" + "\n"
                                         + "Buscar los potencialmente peligrosos de una localidad (5)" + "\n"
                                         + "Buscar por microschip (6)" + "\n" + "\n");
@@ -54,6 +55,7 @@ public class Controller {
                                 }
                                 if (num2 == 1) {
                                     System.out.print(num2);
+                                    manager.setPetArray(manager.uploadData());
                                     System.out.print(manager.mostrar(manager.getPetArray()));
                                 }
                                 if (num2 == 2) {
@@ -71,7 +73,7 @@ public class Controller {
                                     in.nextLine();
                                     String especie = in.nextLine();
                                     especie = especie.toUpperCase();
-                                    System.out.println(manager.countBySpecies(especie));
+                                    System.out.println("la cantidad de "+especie + " es " +manager.countBySpecies(especie));
                                 }
                                 if (num2 == 5) {
                                     System.out.println("Introduce los datos de la siguiente manera" + "\n");

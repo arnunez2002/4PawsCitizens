@@ -16,7 +16,10 @@ public class Manager {
 
     // Punto 2
 
-    public ArrayList<Pet> leerArchivo(File fArchivo) {
+    public ArrayList<Pet> uploadData() throws EmptyAttributeException {
+    	
+    	
+    	File fArchivo = new File("pets-citizens.csv");
         try {
 
             if (fArchivo.exists()) {
@@ -39,7 +42,7 @@ public class Manager {
                     try {
                         e.setMicrochip(Long.parseLong(delimitar.next()));
                     } catch (NumberFormatException s) {
-
+                    } catch (Exception s) {
                     }
                     e.setId("NO-ID");
                     e.setSpecies(delimitar.next());
@@ -50,12 +53,12 @@ public class Manager {
                     } else {
                         e.setPotentiallyDangerous(true);
                         try {
-                            e.setNeighborhood(delimitar.next());
+                            e.setNeighborhood	(delimitar.next());
 
                             listaPet.add(e);
 
                         } catch (Exception n) {
-                            System.out.print("Malo");
+                            System.out.print("");
                         }
                     }
                 }
@@ -68,8 +71,8 @@ public class Manager {
         } catch (IOException ex) {
             /* Captura un posible error y le imprime en pantalla */
             System.out.println(ex.getMessage());
-            return null;
         }
+		return petArray;
     }
 
 
@@ -149,7 +152,8 @@ public class Manager {
 
             }
         }
-
+        contenido = "La cantidad de "+ especie + " "+total;
+        
         return total;
     }
 
@@ -170,9 +174,9 @@ public class Manager {
         }
         String contenido = "";
         for (int i = 0; i < n; i++) {
-            contenido = contenido + "ID: " + petArray.get(i).getId() + "\n" + "Species: " + petArray.get(i).getMicrochip() + "\n"
-                    + "Gender: " + petArray.get(i).getSpecies() + "\n" + "Sexo: "+ petArray.get(i).getSex() + "\n" + "Size: " + petArray.get(i).getSize() + "\n"
-                    + "Potentially Dangerous: " + petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: " + petArray.get(i).getNeighborhood() + "\n" + "\n";
+            contenido = contenido + "ID: " + pets.get(i).getId() + "\n" + "Species: " + pets.get(i).getSpecies() + "\n"
+                    + "Gender: " + pets.get(i).getSex() +  "\n" + "Size: " + pets.get(i).getSize() + "\n"
+                    + "Potentially Dangerous: " + pets.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: " + pets.get(i).getNeighborhood() + "\n" + "\n";
         }
 
         return contenido;

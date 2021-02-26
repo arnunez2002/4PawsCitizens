@@ -1,7 +1,7 @@
 package co.edu.unbosque.fourPawsCitizens.model;
 
 public class Pet {
-	
+
 	private String id;
 	private long microchip;
 	private String species;
@@ -9,12 +9,11 @@ public class Pet {
 	private String size;
 	private Boolean potentiallyDangerous;
 	private String neighborhood;
-	
-	
-	
-	public Pet () {
-		
+
+	public Pet() {
+
 	}
+
 	public Pet(String id, long microchip, String species, String sex, String size, Boolean potentiallyDangerous,
 			String neighborhood) {
 
@@ -40,11 +39,11 @@ public class Pet {
 		return microchip;
 	}
 
-	public String setMicrochip(long microchip) throws NumberFormatException{
+	public String setMicrochip(long microchip) throws NumberFormatException {
 		String contenido = "";
 		try {
 			this.microchip = microchip;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 			return "Error en el micro";
 		}
@@ -79,7 +78,20 @@ public class Pet {
 		return potentiallyDangerous;
 	}
 
-	public void setPotentiallyDangerous(Boolean potentiallyDangerous) {
+	public void setPotentiallyDangerous(Boolean potentiallyDangerous) throws EmptyAttributeException {
+
+		String mensaje = "....";
+		try {
+			if (potentiallyDangerous.equals("")) {
+				mensaje = "localidad vacia";
+				throw new EmptyAttributeException("localidad vacia");
+			}else {
+				this.potentiallyDangerous = potentiallyDangerous;
+				mensaje = "Pokemon Registrado";
+			}
+		} catch (Exception e) {
+		}
+
 		this.potentiallyDangerous = potentiallyDangerous;
 	}
 
@@ -90,7 +102,5 @@ public class Pet {
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
 	}
-	
-	
-	
+
 }
