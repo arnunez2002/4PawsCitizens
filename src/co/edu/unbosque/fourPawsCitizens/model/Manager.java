@@ -2,7 +2,9 @@ package co.edu.unbosque.fourPawsCitizens.model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+
 
 public class Manager {
 
@@ -123,20 +125,20 @@ public class Manager {
         return contenido;
     }
 
-    public String buscarMicrohip(ArrayList<Pet> pets, long num) {
+    public String findByMicrochip( long num) {
         String contenido = "";
-        for (int i = 0; i < pets.size(); i++) {
-            if (num == pets.get(i).getMicrochip()) {
-                contenido = contenido + "\n" + pets.get(i).getId() + "\n" + pets.get(i).getMicrochip() + "\n"
-                        + pets.get(i).getSpecies() + "\n" + pets.get(i).getSex() + "\n" + pets.get(i).getSize() + "\n"
-                        + pets.get(i).getPotentiallyDangerous() + "\n" + pets.get(i).getNeighborhood() + "\n";
+        for (int i = 0; i < petArray.size(); i++) {
+            if (num == petArray.get(i).getMicrochip()) {
+                contenido = "ID: "+ petArray.get(i).getId() + "\n" + "Species: "+petArray.get(i).getMicrochip() + "\n"
+                        +   "Gender: "+petArray.get(i).getSpecies() + "\n" + petArray.get(i).getSex() + "\n" +        "Size: "+ petArray.get(i).getSize() + "\n"
+                        +     "Potentially Dangerous: "+ petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: "+petArray.get(i).getNeighborhood() + "\n";
             }
         }
 
         return contenido;
     }
 
-    public String buscarEspecie(ArrayList<Pet> pets, String especie) {
+    public String countBySpecies(ArrayList<Pet> pets, String especie) {
         int aux = 0;
         String contenido = "";
         for (int i = 0; i < pets.size(); i++) {
@@ -148,8 +150,29 @@ public class Manager {
         return contenido;
     }
 
-    public String buscarPeligro() {
-      return null;
+    public String findBypotentDangerousInNeighborhood(int n, String  range, String neighborhood) {
+    	ArrayList<Pet> pets = new ArrayList<Pet>();
+			if(range.equals("TOP")) {
+				for (int i = 0; i < petArray.size(); i++) {
+					if(petArray.get(i).getPotentiallyDangerous()==true && petArray.get(i).getNeighborhood().equals(neighborhood)) {
+						pets.add(petArray.get(i));
+					}
+			}
+		}else if(range.equals("LAST")) {
+			for (int i = petArray.size(); i > 0; i--) {
+				if(petArray.get(i).getPotentiallyDangerous()==true && petArray.get(i).getNeighborhood().equals(neighborhood)) {
+					pets.add(petArray.get(i));
+				}
+		}
+		}
+			String contenido = "";
+    	for (int i = 0; i < n; i++) {
+    		  contenido = contenido + "ID: "+ petArray.get(i).getId() + "\n" + "Species: "+petArray.get(i).getMicrochip() + "\n"
+                      +   "Gender: "+petArray.get(i).getSpecies() + "\n" + petArray.get(i).getSex() + "\n" +        "Size: "+ petArray.get(i).getSize() + "\n"
+                      +     "Potentially Dangerous: "+ petArray.get(i).getPotentiallyDangerous() + "\n" + "Neighborhood: "+petArray.get(i).getNeighborhood() + "\n" + "\n";
+		}
+    	
+      return contenido;
     }
 
     public String findByMultipleField(ArrayList<Pet> pets, String sex, String species, String size, String potentDangerous) {
