@@ -18,6 +18,7 @@ public class Controller {
     File fileCSV = new File("pets-citizens.csv");
 
     public Controller() throws EmptyAttributeException {
+    	
         String deco = "---------------------------------------------------------------";
         manager = new Manager();
         // manager.uploadData();
@@ -25,7 +26,7 @@ public class Controller {
         System.out.print("*************** BIENVENIDO A PET CITIZENS ******************" + "\n");
         System.out.print(deco + "\n" + "\n");
         int num = 0;
-
+        manager.setPetArray(manager.uploadData());
         Boolean aux = true;
 
         while (aux == true) {
@@ -42,6 +43,7 @@ public class Controller {
                             try {
                                 int num2 = 0;
                                 manager.setPetArray(manager.uploadData());
+                                System.out.println(manager.getPetArray().size());
                                 System.out.print("-------------- OPCIONES A REALIZAE ---------------  " + "\n");
                                 System.out.print("Salir (0)" + "\n" + "mostrar Archivo (1)" + "\n"
                                         + "Buscar por microchip (2)" + "\n" + "Asignar IDs de animales (3)" + "\n"
@@ -54,9 +56,10 @@ public class Controller {
                                     System.out.print("No se aceptan negativos" + "\n" + "\n");
                                 }
                                 if (num2 == 1) {
-                                    System.out.print(num2);
-                                    manager.setPetArray(manager.uploadData());
+                                 
+                               
                                     System.out.print(manager.mostrar(manager.getPetArray()));
+                                    System.out.println(manager.getPetArray().size());
                                 }
                                 if (num2 == 2) {
                                     System.out.print("Escriba el microchip" + "\n");
@@ -131,9 +134,10 @@ public class Controller {
                             } catch (InputMismatchException en) {
                                 System.out.print("Error de numero" + "\n");
                                 break;
-                            } catch (IndexOutOfBoundsException en) {
-                                System.out.print("Error" + "\n");
-                            }
+                            } 
+//                            catch (IndexOutOfBoundsException en) {
+//                                System.out.print("Error" + "\n");
+//                            }
                         }
                     }
                     if (num == 0) {
