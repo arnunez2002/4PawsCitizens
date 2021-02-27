@@ -2,6 +2,7 @@ package co.edu.unbosque.fourPawsCitizens.controller;
 
 import co.edu.unbosque.fourPawsCitizens.model.EmptyAttributeException;
 import co.edu.unbosque.fourPawsCitizens.model.Manager;
+import co.edu.unbosque.fourPawsCitizens.model.Pet;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +17,13 @@ public class Controller {
     Scanner in = new Scanner(System.in);
     Manager manager;
     File fileCSV = new File("pets-citizens.csv");
+    ArrayList<Pet>pets;
 
     public Controller() throws EmptyAttributeException {
     	
         String deco = "---------------------------------------------------------------";
         manager = new Manager();
+
         // manager.uploadData();
         System.out.print(deco + "\n");
         System.out.print("*************** BIENVENIDO A PET CITIZENS ******************" + "\n");
@@ -42,11 +45,11 @@ public class Controller {
                         while (exit == false) {
                             try {
                                 int num2 = 0;
-                                manager.setPetArray(manager.uploadData());
+                                manager.uploadData();
                                 System.out.println(manager.getPetArray().size());
                                 System.out.print("-------------- OPCIONES A REALIZAE ---------------  " + "\n");
                                 System.out.print("Salir (0)" + "\n" + "mostrar Archivo (1)" + "\n"
-                                        + "Buscar por microchip (2)" + "\n" + "Asignar IDs de animales (3)" + "\n"
+                                        + "Buscar por ID (2)" + "\n" + "Asignar IDs de animales (3)" + "\n"
                                         + "Buscar cantidad por especie (4)" + "\n"
                                         + "Buscar los potencialmente peligrosos de una localidad (5)" + "\n"
                                         + "Buscar por microschip (6)" + "\n" + "\n");
@@ -98,27 +101,26 @@ public class Controller {
                                 }
                                 if (num2 == 6) {
                                     manager.assignID();
-                                    System.out.print("Escriba el microChip" + "\n");
                                     String sex = "";
                                     String species = "";
                                     String size = "";
                                     String potentDangerous = "";
+                                    System.out.print("Escriba el microChip" + "\n");
 
                                     in.nextLine();
-                                    System.out.print("Sex");
+                                    System.out.print("Sex"+"\n");
                                     sex = in.nextLine();
                                     sex = sex.toUpperCase();
 
-                                    System.out.print("species");
+                                    System.out.print("species"+"\n");
                                     species = in.nextLine();
                                     species.toUpperCase();
 
-                                    System.out.print("size");
+                                    System.out.print("size"+"\n");
                                     size = in.nextLine();
                                     size.toUpperCase();
 
-                                    System.out.print("potentDangerous");
-                                    in.nextLine();
+                                    System.out.print("potentDangerous"+"\n");
                                     potentDangerous = in.nextLine();
                                     potentDangerous = potentDangerous.toUpperCase();
 
