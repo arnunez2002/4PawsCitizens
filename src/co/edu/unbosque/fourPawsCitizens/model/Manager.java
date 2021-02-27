@@ -10,11 +10,26 @@ public class Manager {
 
     private ArrayList<Pet> petArray;
 
+    
+    /**
+     * Este método inicializa al ArrayList donde se almacenan los datos de los animales
+     * <b>pre</b>Debe existir un ArrayList != null.<br>
+     * @param Se piensa leer animales son existentes en el excel. animales != null.
+     */
     public Manager() {
         petArray = new ArrayList<Pet>();
     }
 
     // Punto 2
+    /**
+     * Este método lee la informacion del excel y la almacena en el ArrayList de Pet
+     * <b>pre</b>Debe haber una arreglo != null.<br>
+     * <b>post</b>Manda una respuesta si hay campos vacios .
+     * <b>post</b>Manda una respuesta si hay numeros en el microChip de un animal .
+     * @param microchip Es el Long de la primera celda del excel. microchip.matches("[0-9]+")==true.
+     * @param Neighborhood Es el String de la primera celda del excel. Neighborhood != null.
+     * @return Regresa un ArrayList de Pet y descarta los que están almacenando de forma erronea.
+     */
 
     public ArrayList<Pet> uploadData() throws EmptyAttributeException {
 
@@ -97,6 +112,13 @@ public class Manager {
     }
 
     // Punto 3
+    
+    /**
+     * Este método asigna los IDs de los animales y detecta si hay digitos en el IDs repetidos para agregar otro digito
+     * <b>pre</b>Debe haber una ArrayList != null.<br>
+     * <b>post</b>Manda una respuesta si el digito del IDs está repetido o no.
+     * @param el microchip de los animales leido por el metodo upDateData . microchip.matches("[0-9]+")==true.
+     */
 
     public void assignID() {
         for (int i = 1; i < petArray.size(); i++) {
@@ -129,6 +151,14 @@ public class Manager {
             }
         }
     }
+    
+    
+    /**
+     *Este método muestra la información de algun animal guardado en el ArrayList.  
+     * <b>pre</b>Debe haber un ArrayList != null<br>
+     * <b>post</b>Regresa un String conla informacion de un Pet del ArrayList<br>
+     * @return Regresa un String conla informacion de un Pet del ArrayList.
+     */
 
     public String mostrarPet(Pet pet) {
         String contenido = "";
@@ -138,6 +168,14 @@ public class Manager {
         return contenido;
     }
 
+    
+    /**
+     *Este método muestra la información de el ArrayList.  
+     * <b>pre</b>Debe haber una ArrayList != null<br>
+     * <b>post</b>Regresa toda la informacion de todo el arraylist<br>
+     * @paramDebe haber una ArrayList != null. ArrayList != null.
+     * @return Regresa un string con los datos del ArrayList.
+     */
     public String mostrar(ArrayList<Pet> pets) {
         String contenido = "cantidad = " + pets.size() + "\n";
         for (int i = 0; i < pets.size(); i++) {
@@ -148,6 +186,17 @@ public class Manager {
         return contenido;
     }
 
+    
+    
+    /**
+     *Este método muestra la información de una mascota indicado por el microchip.  
+     * <b>pre</b>Debe haber una ArrayList != null<br>
+     * <b>pre</b>Debe haber un microchip. microchip.matches("[0-9]+")==true<br>
+     * <b>post</b>Regresa toda la informacion de la mascota<br>
+     * @paramDebe haber una ArrayList != null. un microchip.matches("[0-9]+")==true.
+     * @return Regresa toda la informacion de la mascota.
+     */
+    
     public String findByMicrochip(long num) {
         String contenido = "";
         for (int i = 0; i < petArray.size(); i++) {
@@ -160,6 +209,17 @@ public class Manager {
 
         return contenido;
     }
+    
+    
+    
+    
+    /**
+     *Este método muestra la información de los animales que tienen la misma especie.  
+     * <b>pre</b>Debe haber una ArrayList != null<br>
+     * <b>post</b>Regresa la informacion de todos los animales con la misma especie<br>
+     * @param Species Es la especie de la clase que se quiere saber. species != " ".
+     * @return Regresa un string con los datos de los animales que tienen la misma especie.
+     */
 
     public String countBySpecies(String especie) {
         int aux = 0;
@@ -176,6 +236,17 @@ public class Manager {
 
         return contenido;
     }
+    
+    
+    /**
+     *Este método muestra la información de una mascota indicado por el ID.  
+     * <b>pre</b>Debe haber una ArrayList != null<br>
+     * <b>pre</b>Debe haber un ID. ID!= null<br>
+     * <b>post</b>Regresa toda la informacion de la mascota<br>
+     * @paramDebe haber una ArrayList != null. un microchip.matches("[0-9]+")==true.
+     * @return Regresa toda la informacion de la mascota.
+     */
+    
 
     public String findBypotentDangerousInNeighborhood(int n, String range, String neighborhood) {
         ArrayList<Pet> pets = new ArrayList<Pet>();
@@ -202,6 +273,15 @@ public class Manager {
         return contenido;
     }
 
+    
+    /**
+     *Este método muestra la información de los animales que comparten caracteristica en la parte alfabetica de los IDs.  
+     * <b>pre</b>Debe haber una ArrayList != null<br>
+     * <b>post</b>Regresa la informacion de todos los animales con la misma la misma parte alfabetica de IDs<br>
+     * @param ID Es laidentificacion personal de cada animal. ID != " ".
+     * @return Regresa un string con los datos de los animales que tienen la misma parte alfabetica en su microchip.
+     */
+    
     public String findByMultipleField(String sex, String species, String size, String potentDangerous) {
         String contador = "";
 
@@ -231,6 +311,10 @@ public class Manager {
         return contador;
     }
 
+    
+    
+    
+    
     public ArrayList<Pet> getPetArray() {
         return petArray;
     }
